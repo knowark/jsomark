@@ -1,5 +1,4 @@
 from json import loads
-from collections import OrderedDict
 from lxml.etree import Element
 
 
@@ -10,7 +9,7 @@ class Composer:
     def compose(self, obj):
         """Compose XML element from obj dict."""
         if isinstance(obj, (str, bytes)):
-            obj = loads(obj, object_pairs_hook=OrderedDict)
+            obj = loads(obj)
         tag, content = next(iter(obj.items()))
         return self._build(self._make_element(tag), content)
 
