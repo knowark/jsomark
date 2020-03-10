@@ -77,6 +77,8 @@ the **symbol "&"**:
         }
     }
 
+    xml_data = json_to_xml(json_data)
+
     assert xml_data == (
         b'<Device><Reference ID="XYZ2020" Serial="S10987"/></Device>')
 
@@ -96,6 +98,8 @@ If the key with attributes also has a **text content**, then the
             }
         }
     }
+
+    xml_data = json_to_xml(json_data)
 
     assert xml_data == (
         b'<Employee><Company VAT="900123765">Servagro</Company></Employee>')
@@ -126,7 +130,45 @@ inside the generated XML.
         }
     }
 
+    xml_data = json_to_xml(json_data)
+
     assert xml_data == (
         b'<Order><Line ID="1">Chocolate Ice Cream</Line>'
         b'<Line ID="2">Banana Split</Line>'
         b'<Line ID="3">Caramel Cake</Line></Order>')
+
+
+Namespaces
+----------
+
+In jsomark, namespaces are provided as a **separate dictionary** whose keys
+are the prefixes that must be used in the json document itself. The default
+namespace should be set in the *'None'* key of the namespaces dictionary and
+its keys in the json document don't have to be prefixed:
+
+.. Note::
+    Don't miss the **":"** separator in the non-default namespaced key
+    such as *'isbn:number'* in the following example.
+
+.. code-block:: python
+
+    from jsomark import json_to_xml
+
+    namespaces = {
+        None: 'urn:loc.gov:books',
+        'isbn': 'urn:ISBN:0-395-36341-6'
+    }
+
+    json_data = {
+        "book": {
+            "title": "Cheaper by the Dozen",
+            "isbn:number": 1568491379
+        }
+    }
+
+    xml_data = json_to_xml(json_data, namespaces=namespaces)
+
+    assert xml_data == (
+        b'<book xmlns="urn:loc.gov:books" xmlns:isbn="urn:ISBN:0-395-36341-6">'
+        b'<title>Cheaper by the Dozen</title>'
+        b'<isbn:number>1568491379</isbn:number></book>'
