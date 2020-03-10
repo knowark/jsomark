@@ -49,3 +49,12 @@ def test_make_child_empty_with_values():
 
     with raises(ValueError):
         child = make_child(parent, tag, text, empty=True)
+
+
+def test_make_child_text():
+    parent = fromstring('<Root></Root>')
+    tag = 'Child'
+    text = 'Body'
+
+    child = make_child(parent, tag, text)
+    assert child.text == 'Body'
