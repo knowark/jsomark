@@ -58,3 +58,15 @@ def test_make_child_text():
 
     child = make_child(parent, tag, text)
     assert child.text == 'Body'
+
+
+def test_make_child_attributes():
+    parent = fromstring('<Root></Root>')
+    tag = 'Child'
+    attributes = {'id': '123', 'color': 'yellow'}
+
+    child = make_child(parent, tag, attributes=attributes)
+
+    assert child.tag == tag
+    assert child.attrib == attributes
+    assert child.text is None
