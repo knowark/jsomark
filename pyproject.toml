@@ -6,7 +6,7 @@ authors = ["Knowark"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^2.7"
+python = "^2.7,^3.6"
 lxml = "^4.5.0"
 
 [tool.poetry.dev-dependencies]
