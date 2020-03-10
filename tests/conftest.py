@@ -2,6 +2,13 @@ from pytest import fixture
 
 
 @fixture
+def simple_dict():
+    return {
+        "Hello": "World"
+    }
+
+
+@fixture
 def simple_json():
     return '''{
         "Hello": "World"

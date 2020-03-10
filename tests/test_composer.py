@@ -8,6 +8,11 @@ def composer():
     return Composer()
 
 
+def test_composer_dict(composer, simple_dict):
+    element = composer.compose(simple_dict)
+    assert tostring(element) == b'<Hello>World</Hello>'
+
+
 def test_composer_simple(composer, simple_json):
     element = composer.compose(simple_json)
     assert tostring(element) == b'<Hello>World</Hello>'
