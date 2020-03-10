@@ -53,3 +53,53 @@ structures and Python json serializable **dictionaries**:
     assert xml_data == (
         b'<Company><Name>Knowark</Name><Country>Colombia</Country></Company>')
 
+
+Attributes
+----------
+
+XML can carry more information (i.e. metadata) than JSON, that is why a
+convention in the format of a converting json document is needed to match the
+original XML semantics. In *jsomark*, **attributes** are defined with
+the **symbol "&"**:
+
+.. note::
+    Attribute values can only be **text** or **bytes**
+
+.. code-block:: python
+
+    from jsomark import json_to_xml
+
+    json_data = {
+        "Device": {
+            "Reference": {
+                "&": {"ID": "XYZ2020", "Serial": "S10987"}
+            }
+        }
+    }
+
+    assert xml_data == (
+        b'<Device><Reference ID="XYZ2020" Serial="S10987"/></Device>')
+
+If the key with attributes also has a **text content**, then the
+**symbol "#"** should be used to carry it:
+
+
+.. code-block:: python
+
+    from jsomark import json_to_xml
+
+    json_data = {
+        "Employee": {
+            "Company": {
+                "&": {"VAT": "900123765"},
+                "#": "Servagro"
+            }
+        }
+    }
+
+    assert xml_data == (
+        b'<Employee><Company VAT="900123765">Servagro</Company></Employee>')
+
+.. note::
+    If a JSON key doesn't have attributes, its value becomes the text
+    of the resulting XML element as seen in the previous examples.
