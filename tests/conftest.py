@@ -74,3 +74,12 @@ def nested_namespaces_json():
             }
         }
     }'''
+
+
+@fixture
+def not_basic_dict():
+    return {
+        "Invoice": {
+            "key": lambda x: "value"
+        }
+    }

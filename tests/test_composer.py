@@ -70,3 +70,8 @@ def test_composer_namespaces(composer, nested_namespaces_json):
         b'specification:ubl:schema:xsd:CommonAggregateComponents-2">'
         b'<cbc:ID>F0001</cbc:ID><cac:Party><cbc:PartyName>Knowark'
         b'</cbc:PartyName></cac:Party></Invoice>')
+
+
+def test_composer_not_basic(composer, not_basic_dict):
+    element = composer.compose(not_basic_dict)
+    assert tostring(element) == b'<Invoice><key/></Invoice>'
