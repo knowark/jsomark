@@ -1,9 +1,16 @@
 [tool.poetry]
 name = "jsomark"
 version = "0.2.0"
-description = "json <-> xml composing and parsing convention."
+description = "json to xml composing and parsing convention."
 authors = ["Knowark"]
 license = "MIT"
+readme = "README.rst"
+homepage = "https://github.com/knowark/jsomark"
+repository = "https://github.com/knowark/jsomark"
+keywords = ["json", "xml"]
+include = [
+    "LICENSE"
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
