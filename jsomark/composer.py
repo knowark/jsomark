@@ -1,7 +1,6 @@
 from json import loads
 from collections import OrderedDict
 from lxml.etree import Element
-from .utils import make_child
 
 
 class Composer:
