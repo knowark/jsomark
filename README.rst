@@ -103,3 +103,30 @@ If the key with attributes also has a **text content**, then the
 .. note::
     If a JSON key doesn't have attributes, its value becomes the text
     of the resulting XML element as seen in the previous examples.
+
+
+Lists
+-----
+
+Lists in the JSON document are interpreted as **repeating elements**
+inside the generated XML.
+
+
+.. code-block:: python
+
+    from jsomark import json_to_xml
+
+    json_data = {
+        "Order": {
+            "Line": [
+                {"&": {"ID": "1"}, "#": "Chocolate Ice Cream"},
+                {"&": {"ID": "2"}, "#": "Banana Split"},
+                {"&": {"ID": "3"}, "#": "Caramel Cake"}
+            ]
+        }
+    }
+
+    assert xml_data == (
+        b'<Order><Line ID="1">Chocolate Ice Cream</Line>'
+        b'<Line ID="2">Banana Split</Line>'
+        b'<Line ID="3">Caramel Cake</Line></Order>')
