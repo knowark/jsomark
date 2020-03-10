@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jsomark"
-version = "0.2.1"
+version = "0.2.2"
 description = "json to xml composing and parsing convention."
 authors = ["Knowark"]
 license = "MIT"
