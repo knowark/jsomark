@@ -19,11 +19,3 @@ def make_child(parent, tag, text=None, attributes=None,
             child.text = text
 
     return child
-
-
-#  Define 'unicode' for Python 2 and 3 compatibility
-
-try:                   # pragma: no cover
-    unicode = unicode  # pragma: no cover
-except NameError:      # pragma: no cover
-    unicode = str      # pragma: no cover

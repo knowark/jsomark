@@ -1,7 +1,7 @@
 from json import loads
 from collections import OrderedDict
 from lxml.etree import Element
-from .utils import make_child, unicode
+from .utils import make_child
 
 
 class Composer:
@@ -18,8 +18,8 @@ class Composer:
     def _build(self, parent, item):
         """Recursively build XML element from item object."""
         if isinstance(item, (int, float)):
-            item = unicode(item)
-        if isinstance(item, unicode):
+            item = str(item)
+        if isinstance(item, str):
             parent.text = item
             return parent
 
