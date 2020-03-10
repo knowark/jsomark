@@ -41,7 +41,12 @@ structures and Python json serializable **dictionaries**:
 
     from jsomark import json_to_xml
     
-    json_data = b'{"hello": "world"}'
+    json_data = {
+        "Company": {
+            "Name": "Knowark",
+            "Country": "Colombia"
+        }
+    }
 
     xml_data = json_to_xml(json_data)
 
